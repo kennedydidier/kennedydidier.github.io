@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Project One: Exploring Employer Implicit Bias Data
+title: Exploring Employer Implicit Bias Data
 categories: [r, data exploration, business analytics, descriptive statistics]
 ---
 
