@@ -12,7 +12,7 @@ While Dr. Pager utilized this data in order to analyze the causal effects of a c
 
 
 #### I. Basic Dimensions
-```r
+{% highlight r %}
 library(tidyverse)
 library(knitr)
 dat<-read.csv("kennedy/R/data/crimrec.csv")
@@ -44,7 +44,7 @@ c7<-"peru"
 c8<-"goldenrod2"
 ggplot(dat, aes(x=manualskill)) + geom_bar(aes(y=..count..),
                                         colour=c7, fill=c8) + ggtitle("Frequency Histogram of Applications Requiring Manual Skills")
-```
+{% endhighlight %}
 
 
 ### Tables
