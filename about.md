@@ -4,6 +4,4 @@ title: About
 permalink: /about
 ---
 
-Hi, Write an awesome description about your blog here.  
-Feel free to make it a bit more interesting by adding a picture or two.  
-Only limit here is your creativity and imagination. Unleash them with full force.  
+Hi! Welcome to my portfolio. I'm a 23 year old PhD student in the quantitative social sciences.
