@@ -4,8 +4,6 @@ title: Project One: Exploring Employer Implicit Bias Data
 categories: [r, data exploration, business analytics, descriptive statistics]
 ---
 
-### Descriptive Analysis of Employer Implicit Bias Data
-
 As part of my doctoral degree, I have worked with many sets of social science data. As I grew weary of the social scientific mode of analysis, I began to look for opportunities to reanalyze these data in order to generate important business analytics and insight.
 
 In this small project, I used a dataset published in 2003 collected from an audit study conducted by Dr. Devah Pager. For this study, Dr. Pager hired job applicants of different races and had them apply for a number of jobs, each time selecting one candidate that would identify themselves as an ex-felon. To determine how incarceration and race influence employment chances, Dr. Pager compared callback rates among applicants with and without a criminal background and calculated how those callback rates vary by race.
