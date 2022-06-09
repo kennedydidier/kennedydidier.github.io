@@ -14,35 +14,40 @@ While Dr. Pager utilized this data in order to analyze the causal effects of a c
 
 
 #### I. Basic Dimensions
+```r
+library(tidyverse)
+library(knitr)
+dat<-read.csv("kennedy/R/data/crimrec.csv")
+str(dat)
+head(dat)
+nrow(dat)
+i<-c("callback", "black", "crimrec", "interact", "city", "custserv", "manualskill")
+dat[i]<-lapply(dat[i],factor)
+sapply(dat, class)
+summary(dat)
+dat<-na.omit(dat)
+table(dat$city)
+c1<- "tomato4"
+c2<-"salmon2"
+ggplot(dat, aes(x=city)) + geom_bar(aes(y=..count..),
+                                    colour=c1, fill=c2) + ggtitle("Frequency Histogram of Job Location")
+table(dat$interact)
+c3<-"skyblue3"
+c4<-"slategray1"
+ggplot(dat, aes(x=interact)) + geom_bar(aes(y=..count..),
+                                        colour=c3, fill=c4) + ggtitle("Frequency Histogram of Applicant Interaction with Employer")
+table(dat$custserv)
+c5<-"bisque2"
+c6<-"cornsilk"
+ggplot(dat, aes(x=custserv)) + geom_bar(aes(y=..count..),
+                                        colour=c5, fill=c6) + ggtitle("Frequency Histogram of Customer Service Applications")
+table(dat$manualskill)
+c7<-"peru"
+c8<-"goldenrod2"
+ggplot(dat, aes(x=manualskill)) + geom_bar(aes(y=..count..),
+                                        colour=c7, fill=c8) + ggtitle("Frequency Histogram of Applications Requiring Manual Skills")
+```
 
-
-
-
-### Oh hai, an unordered list!!
-
-In arcu magna, aliquet vel pretium et, molestie et arcu. Mauris lobortis nulla et felis ullamcorper bibendum. Phasellus et hendrerit mauris.
-
-- First item, yo
-- Second item, dawg
-- Third item, what what?!
-- Fourth item, fo sheezy my neezy
-
-### Oh hai, an ordered list!!
-
-In arcu magna, aliquet vel pretium et, molestie et arcu. Mauris lobortis nulla et felis ullamcorper bibendum. Phasellus et hendrerit mauris.
-
-1. First item, yo
-2. Second item, dawg
-3. Third item, what what?!
-4. Fourth item, fo sheezy my neezy
-
-## Headings are cool! (h2)
-
-Proin eget nibh a massa vestibulum pretium. Suspendisse eu nisl a ante aliquet bibendum quis a nunc. Praesent varius interdum vehicula. Aenean risus libero, placerat at vestibulum eget, ultricies eu enim. Praesent nulla tortor, malesuada adipiscing adipiscing sollicitudin, adipiscing eget est.
-
-Praesent nulla tortor, malesuada adipiscing adipiscing sollicitudin, adipiscing eget est.
-
-Proin eget nibh a massa vestibulum pretium. Suspendisse eu nisl a ante aliquet bibendum quis a nunc.
 
 ### Tables
 
