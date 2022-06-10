@@ -53,7 +53,12 @@ ggplot(data=dat, aes(x=manualskill, fill=as.factor(manualskill))) + geom_bar(col
 
 {% endhighlight %}
 
-/assets/image/fhist_job_location.png
+
+![fhist_job_location](https://user-images.githubusercontent.com/102122956/172976620-fc0e3c81-0ed6-471c-a01f-ce90f265c83b.png)
+![fhist_interact](https://user-images.githubusercontent.com/102122956/172976640-83452e1c-da9b-4e4a-acc2-7a2b34b9bcff.png)
+![fhist_custserv](https://user-images.githubusercontent.com/102122956/172976656-39d26100-bd05-43d3-82a0-b25c054b524c.png)
+![fhist_manualskill](https://user-images.githubusercontent.com/102122956/172976704-84006438-bacd-42d5-b05e-3a95091c9272.png)
+
 
 ### Tables
 
