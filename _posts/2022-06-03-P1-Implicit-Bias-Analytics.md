@@ -53,6 +53,7 @@ ggplot(data=dat, aes(x=manualskill, fill=as.factor(manualskill))) + geom_bar(col
 
 {% endhighlight %}
 
+/assets/image/fhist_job_location.png
 
 ### Tables
 
