@@ -57,19 +57,133 @@ ggplot(data=dat, aes(x=manualskill, fill=as.factor(manualskill))) + geom_bar(col
 ![fhist_job_location](https://user-images.githubusercontent.com/102122956/172976620-fc0e3c81-0ed6-471c-a01f-ce90f265c83b.png)![fhist_interact](https://user-images.githubusercontent.com/102122956/172976640-83452e1c-da9b-4e4a-acc2-7a2b34b9bcff.png)
 ![fhist_custserv](https://user-images.githubusercontent.com/102122956/172976656-39d26100-bd05-43d3-82a0-b25c054b524c.png)![fhist_manualskill](https://user-images.githubusercontent.com/102122956/172976704-84006438-bacd-42d5-b05e-3a95091c9272.png)
 
+These four columns (city, interact, custserv, and manualskill) can help generate some interesting business insights. City is a binary categorical variable that identifies whether the job is located in the city center. Interact is a binary categorical variable that identifies whether the applicant interacted with the employer during their interview (for example, if they spoke to them when they dropped off their application). Custserv is a binary categorical variable that identifies whether the position for which the applicants applied was a customer service industry. Manualskill identifies (1) whether the job requires manual skills. These histograms allow us to visualize how many applications were submitted to positions of each variety.
 
-### Tables
+#### II. Descriptive Statistics
 
-Title 1               | Title 2               | Title 3               | Title 4
---------------------- | --------------------- | --------------------- | ---------------------
-lorem                 | lorem ipsum           | lorem ipsum dolor     | lorem ipsum dolor sit
-lorem ipsum dolor sit | lorem ipsum dolor sit | lorem ipsum dolor sit | lorem ipsum dolor sit
-lorem ipsum dolor sit | lorem ipsum dolor sit | lorem ipsum dolor sit | lorem ipsum dolor sit
-lorem ipsum dolor sit | lorem ipsum dolor sit | lorem ipsum dolor sit | lorem ipsum dolor sit
+This dataset allows us to observe how the rate of employer callbacks changes depending on an applicant's race and criminal record. In order to measure how location, interaction with the employer, and the type of position modifies these results, I first replicated Dr. Pager's descriptive analysis by analyzing how the odds of recieving a callback differed across race and by criminal record for all applications, regardless of their location, employer interaction, or type.
 
-Title 1 | Title 2 | Title 3 | Title 4
---- | --- | --- | ---
-lorem | lorem ipsum | lorem ipsum dolor | lorem ipsum dolor sit
-lorem ipsum dolor sit amet | lorem ipsum dolor sit amet consectetur | lorem ipsum dolor sit amet | lorem ipsum dolor sit
-lorem ipsum dolor | lorem ipsum | lorem | lorem ipsum
-lorem ipsum dolor | lorem ipsum dolor sit | lorem ipsum dolor sit amet | lorem ipsum dolor sit amet consectetur
+{% highlight r %}
+results<-dat %>% 
+  group_by(black, crimrec)
+results%>%
+  summarise(callback=mean(as.numeric(as.character(callback))))
+kable(results)%>%
+  kable_styling(font_size=10)
+{% endhighlight %}
+
+
+
+
+{% highlight r %}
+### Black Applicants
+black_results<-results%>%
+  filter(black==1)
+  
+ br_treatment<-black_results%>%
+  filter(crimrec==1) %>%
+  select(callback)
+  
+ br_control<-black_results %>%
+  filter(crimrec==0) %>%
+  select(callback)
+  
+ br_treatment - br_control
+ 
+ 1 - br_treatment/br_control
+{% endhighlight %}
+
+{% highlight r %}
+### White Applicants
+white_results<-results%>%
+  filter(black!=1)
+  
+ wr_treatment<-white_results %>%
+  filter(crimrec==1)%>%
+  select(callback)
+ 
+ wr_control<-white_results %>%
+  filter(crimrec==0)%>%
+  select(callback)
+ 
+ wr_treatment - wr_control
+ 1 - wr_treatment/wr_control
+  
+{% endhighlight %}
+
+According to this analysis, 14.07% of Black applicants without criminal records received callbacks. Comparatively, only 5.07% of Black applicants with a criminal record received callbacks. Having a criminal record decreased the chances of Black applicants recieving a callback by 9%.
+
+34.00% of white applicants without criminal records received callbacks. 16.67% of white applicants with criminal records received callbacks. Having a criminal record decreased the chances of white applicants receiving a callback by 17.33%.
+
+Comparing across racial groups, however, reveals even more information. 16.67% of white applicants with a criminal records received a callback, which is 2.6% higher than the callback rate for Black applicants without a criminal record. There is massive disparity in callback rates across race, though across both white and Black applicants the chances of receiving a callback was cut roughly in half if they had a criminal record.
+
+
+A core explanation for the racial differences in callback rates can be found in the concept of [Implicit Bias](https://diversity.nih.gov/sociocultural-factors/implicit-bias). This audit study was conducted in Milwaukee, a progressive city with almost equal percentages of Black and White residents and where Black ownership of small businesses is [soaring](https://www.tmj4.com/news/local-news/surge-of-entrepreneurs-black-owned-businesses-continue-to-grow-in-milwaukee-despite-the-pandemic). Thus, it is hard to purport that this discrepancy is the product of purposeful and intentional discrimination on behalf of businesses and hiring managers. Rather, it is likely that it comes from unintentional bias and a lack of training in how to mitigate implicit bias.  
+
+**It is important to try to understand which business and position factors are relevant in either intensifying or reducing racial disparities in callback rates (aka, identifying where implicit bias might be more present and where it is reduced). This generates important insight for businesses and can help them identify whether they should pay extra attention to reducing implicit bias in their hiring practices. Digging into how the odds of receiving a callback change based on the loation, interaction with the employer, and type of job to which the applicant applied allows us to make such observations.**
+
+{% hightlight r %}
+city_odds<-dat%>%
+  group_by(city, black, crimrec)%>%
+  summarise(callback=(mean(as.numeric(as.character(callback)))))%>%
+  arrange(black, crimrec)
+kable(city_odds)%>%
+  kable_styling(font_size=10)
+{% endhighlight %}
+
+<img width="669" alt="Screen Shot 2022-06-07 at 5 11 23 PM" src="https://user-images.githubusercontent.com/102122956/172483532-00939ba0-f484-4ee0-82a7-200f507dfe00.png">
+
+This table allows us to see how the odds of recieving a callback differ depending on the location of the place of employment. 
+Interestingly, we can see here that being located in a city center means a lower chance of a callback for applicants of any race 
+or criminal status, _except_ for Black applicants with criminal records. For these applicants, the odds of recieving a callback 
+_increases_ from 3.4% to 6.3% if the job is located in the city center. This suggests that, despite the increased competitiveness of jobs in the city center, they still are more open to hiring a Black applicant with a criminal record than suburban businesses.
+
+When comparing across racial groups, it is clear that discrepancies in callback odds based on race and criminal record persist regardless of the location of the job for which the applicant applied. However, for jobs within the city center, Black applicants 
+without a criminal record had a higher chance of receiving a callback than White applicants with a criminal record, which is different from the overall results. Further, the odds of a White person without a criminal record were 23.2% and the odds of a Black person without a criminal record were 11.1%, 12.1% different -- a reduction from the overall difference of 20%. This suggests that, compared to businesses in the suburbs, businesses located in the city center demonstrate less systematic implicit bias than suburban businesses.
+
+{% highlight r %}
+interact_odds<-dat%>%
+  group_by(interact, black, crimrec)%>%
+  summarise(callback=(mean(as.numeric(as.character(callback)))))%>%
+  arrange(black, crimrec)
+kable(interact_odds)%>%
+  kable_styling(font_size=10)
+{% endhighlight %}
+
+<img width="668" alt="Screen Shot 2022-06-07 at 5 22 21 PM" src="https://user-images.githubusercontent.com/102122956/172485036-de3c038c-84fb-4b09-acd9-a3b9e94883b0.png">
+
+The results of this table are _massively_ informative on the role of bias in employment practices. Here, we can see that across _all_ applicants, a personal interaction with the employer (for example, speaking to the hiring manager when turning in an application) 
+increased the odds of receiving a callback. This increase was particularly sharp for White applicants with criminal records and for 
+Black applicants without a criminal record. In fact, Black applicants without a criminal record who interacted with their potential employer had an 8.9% higher chance of being called back when compared to White applicants with no criminal record who did not interact with their potential employer.
+
+This suggests that implicit bias most often influences the odds of a callback when employers just examine a resume and do not actually interact with a potential employee. They may unconsciously react to a traditionally "Black" sounding name and react more harshly react to the answer of "yes" to the question of a criminal record when they have not spoken to the applicant in person, regardless of the applicants social skills or presentation. This implies that the influence of implicit bias could very easily be reduced with no training at all simply by an employer personally accepting an application, which allows them to see the person to which the resume is attached.
+
+{% highlight r %}
+custserv_odds<-dat%>%
+  group_by(custserv, black, crimrec)%>%
+  summarise(callback=(mean(as.numeric(as.character(callback)))))%>%
+  arrange(black, crimrec)
+kable(custserv_odds)%>%
+  kable_styling(font_size=10)
+{% endhighlight %}
+
+<img width="669" alt="Screen Shot 2022-06-07 at 5 40 32 PM" src="https://user-images.githubusercontent.com/102122956/172487592-772b7648-404f-4371-8026-44111b1b546d.png">
+
+According to this table, the chances of receiving a callback were roughly equivalent for every type of applicant across customer service and non-customer service jobs and thus, roughly equivalent to the overall callback rates. Examining closely, it appears that customer service positions have slightly higher odds of calling an applicant back regardless of their race or criminal record, implying that this industry may have a higher need for employees than non-customer service jobs. Whether a job is in the customer service industry or not does not particularly seem to affect bias, as White applicants with a criminal record were called back more than Black applicants with a criminal record for both customer service industry positions and non-customer service industry positions.
+
+{% highlight r %}
+manualskill_odds<-dat%>%
+  group_by(manualskill, black, crimrec)%>%
+  summarise(callback=(mean(as.numeric(as.character(callback)))))%>%
+  arrange(black, crimrec)
+kable(manualskill_odds)%>%
+  kable_styling(font_size=10)
+{% endhighlight %}
+
+<img width="667" alt="Screen Shot 2022-06-07 at 5 43 09 PM" src="https://user-images.githubusercontent.com/102122956/172487959-238e6b99-8a76-4387-b7f0-8c4f11a78e7e.png">
+
+When examining jobs that require manual skills versus those that do not, the results are similar to our customer service results. Jobs requiring manual skills increasedthe odds of White applicants without criminal records receiving callbacks by 8%, and increased the odds of a Black applicant with a criminal record by .7%. However, the odds of a Black applicant without a criminal record receiving a callback for a manual skills job was 2% less than their odds of receiving a callback for a non-manual skills one. This suggests that non-manual skills employers were marginally better at reducing implicity bias. 
+
+
+
+The results of these descriptive statistics give us a glimpse of how the odds of recieving a callback differ for different populations of applicants across certain characteristics of the business at which they are applying. One major, directly actionable insight this data suggests is that employer interaction with a potential employee massively decreases racial bias.
