@@ -25,26 +25,32 @@ dat[i]<-lapply(dat[i],factor)
 sapply(dat, class)
 summary(dat)
 dat<-na.omit(dat)
+
 table(dat$city)
-c1<- "tomato4"
-c2<-"salmon2"
-ggplot(dat, aes(x=city)) + geom_bar(aes(y=..count..),
-                                    colour=c1, fill=c2) + ggtitle("Frequency Histogram of Job Location")
+c1<-"skyblue4"
+c2<-"skyblue3"
+c3<-"skyblue1"
+ggplot(data=dat, aes(x=city, fill=as.factor(city))) + geom_bar(colour=c1) + scale_fill_manual(values=c(c2,c3)) + labs(fill="Location \n (0: Suburbs, 1: City)") + ggtitle('Frequency Histogram of Job Location') + theme(plot.title=element_text(size=11, margin=margin(10,0,10,0), lineheight=.9))
+
 table(dat$interact)
-c3<-"skyblue3"
-c4<-"slategray1"
-ggplot(dat, aes(x=interact)) + geom_bar(aes(y=..count..),
-                                        colour=c3, fill=c4) + ggtitle("Frequency Histogram of Applicant Interaction with Employer")
+c4<-"coral4"
+c5<-"coral3"
+c6<-"coral1"
+ggplot(data=dat, aes(x=interact, fill=as.factor(interact))) + geom_bar(colour=c4) + scale_fill_manual(values=c(c5,c6)) + labs(fill="Employer Interaction \n (0: No Interaction, \n 1: Interaction)") + ggtitle('Frequency Histogram of Interaction with Employer') + theme(plot.title=element_text(size=11, margin=margin(10,0,10,0), lineheight=.9))
+
 table(dat$custserv)
-c5<-"bisque2"
-c6<-"cornsilk"
-ggplot(dat, aes(x=custserv)) + geom_bar(aes(y=..count..),
-                                        colour=c5, fill=c6) + ggtitle("Frequency Histogram of Customer Service Applications")
+c7<-"navajowhite4"
+c8<-"navajowhite3"
+c9<-"navajowhite"
+ggplot(data=dat, aes(x=custserv, fill=as.factor(custserv))) + geom_bar(colour=c7) + scale_fill_manual(values=c(c8,c9)) + labs(fill="Industry \n (0: Non-Customer Service, \n 1: Customer Service)") + ggtitle('Frequency Histogram of Customer Service Applications') + theme(plot.title=element_text(size=11, margin=margin(10,0,10,0), lineheight=.9))
+
+
 table(dat$manualskill)
-c7<-"peru"
-c8<-"goldenrod2"
-ggplot(dat, aes(x=manualskill)) + geom_bar(aes(y=..count..),
-                                        colour=c7, fill=c8) + ggtitle("Frequency Histogram of Applications Requiring Manual Skills")
+c10<-"olivedrab"
+c11<-"darkolivegreen4"
+c12<-"darkolivegreen3"
+ggplot(data=dat, aes(x=manualskill, fill=as.factor(manualskill))) + geom_bar(colour=c10) + scale_fill_manual(values=c(c11,c12)) + labs(fill="Required Skills \n (0: Manual Skills Not Required, \n 1: Manual Skills Required)") + ggtitle('Frequency Histogram of Applications Requiring Manual Skills') + theme(plot.title=element_text(size=11, margin=margin(10,0,10,0), lineheight=.9))
+
 {% endhighlight %}
 
 
