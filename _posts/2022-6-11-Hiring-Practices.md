@@ -6,7 +6,9 @@ categories: [r, logistic regression, structured learning algorithms, data analys
 
 Similar to the descriptive analysis I conducted on employer implicit bias using data from a 2003 
 project by Dr. Devah Pager, this project uses another of Dr. Pager's datasets to study the workplace 
-correlates to employer willingness to hire an applicant with a criminal record. Like my previous project, instead of 
+correlates to employer willingness to hire an applicant with a criminal record. 
+<!--more-->
+Like my previous project, instead of 
 taking a social scientific approach to this data, I sought an opportunity to gain deeper insight into business 
 behavior and employer hiring practices. Using [this](https://www.icpsr.umich.edu/web/ICPSR/studies/3599/datadocumentation), 
 dataset, which is based upon a survey of employers in Milkwaukee, Wisconsin, I developed a structured learning algorithm
