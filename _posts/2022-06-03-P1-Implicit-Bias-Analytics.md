@@ -59,19 +59,16 @@ These four columns (city, interact, custserv, and manualskill) can help generate
 
 This dataset allows us to observe how the rate of employer callbacks changes depending on an applicant's race and criminal record. In order to measure how location, interaction with the employer, and the type of position modifies these results, I first replicated Dr. Pager's descriptive analysis by analyzing how the odds of recieving a callback differed across race and by criminal record for all applications, regardless of their location, employer interaction, or type.
 
-{% highlight r %}
 results<-dat %>% 
   group_by(black, crimrec)
 results%>%
   summarise(callback=mean(as.numeric(as.character(callback))))
 kable(results)%>%
   kable_styling(font_size=10)
-{% endhighlight %}
 
 
 
 
-{% highlight r %}
 ### Black Applicants
 black_results<-results%>%
   filter(black==1)
@@ -87,9 +84,7 @@ black_results<-results%>%
  br_treatment - br_control
  
  1 - br_treatment/br_control
-{% endhighlight %}
 
-{% highlight r %}
 ### White Applicants
 white_results<-results%>%
   filter(black!=1)
@@ -105,7 +100,6 @@ white_results<-results%>%
  wr_treatment - wr_control
  1 - wr_treatment/wr_control
   
-{% endhighlight %}
 
 According to this analysis, 14.07% of Black applicants without criminal records received callbacks. Comparatively, only 5.07% of Black applicants with a criminal record received callbacks. Having a criminal record decreased the chances of Black applicants recieving a callback by 9%.
 
@@ -118,14 +112,12 @@ A core explanation for the racial differences in callback rates can be found in 
 
 **It is important to try to understand which business and position factors are relevant in either intensifying or reducing racial disparities in callback rates (aka, identifying where implicit bias might be more present and where it is reduced). This generates important insight for businesses and can help them identify whether they should pay extra attention to reducing implicit bias in their hiring practices. Digging into how the odds of receiving a callback change based on the loation, interaction with the employer, and type of job to which the applicant applied allows us to make such observations.**
 
-{% hightlight r %}
 city_odds<-dat%>%
   group_by(city, black, crimrec)%>%
   summarise(callback=(mean(as.numeric(as.character(callback)))))%>%
   arrange(black, crimrec)
 kable(city_odds)%>%
   kable_styling(font_size=10)
-{% endhighlight %}
 
 <img width="669" alt="Screen Shot 2022-06-07 at 5 11 23 PM" src="https://user-images.githubusercontent.com/102122956/172483532-00939ba0-f484-4ee0-82a7-200f507dfe00.png">
 
