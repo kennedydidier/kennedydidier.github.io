@@ -9,7 +9,7 @@ lang: "en"
 title: Kennedy Didier
 
 # Short bio or description (displayed in the header)
-description: Graduate student turned data scientist.
+description: Graduate student turned data scientist. \n R, Python, Excel, SQL
 
 # URL of your avatar or profile pic (you could use your GitHub profile pic)
 avatar: /assets/image/avatar.png
