@@ -53,12 +53,6 @@ ggplot(data=dat, aes(x=manualskill, fill=as.factor(manualskill))) + geom_bar(col
 
 {% endhighlight %}
 
-
-![fhist_job_location](https://user-images.githubusercontent.com/102122956/172976620-fc0e3c81-0ed6-471c-a01f-ce90f265c83b.png)
-![fhist_interact](https://user-images.githubusercontent.com/102122956/172976640-83452e1c-da9b-4e4a-acc2-7a2b34b9bcff.png)
-![fhist_custserv](https://user-images.githubusercontent.com/102122956/172976656-39d26100-bd05-43d3-82a0-b25c054b524c.png)
-![fhist_manualskill](https://user-images.githubusercontent.com/102122956/172976704-84006438-bacd-42d5-b05e-3a95091c9272.png)
-
 These four columns (city, interact, custserv, and manualskill) can help generate some interesting business insights. City is a binary categorical variable that identifies whether the job is located in the city center. Interact is a binary categorical variable that identifies whether the applicant interacted with the employer during their interview (for example, if they spoke to them when they dropped off their application). Custserv is a binary categorical variable that identifies whether the position for which the applicants applied was a customer service industry. Manualskill identifies (1) whether the job requires manual skills. These histograms allow us to visualize how many applications were submitted to positions of each variety.
 
 #### II. Descriptive Statistics
