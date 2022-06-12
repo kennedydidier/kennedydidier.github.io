@@ -91,7 +91,7 @@ sold[sold['sale_price']==sold['sale_price'].min()]
 bought[bought['sale_price']==bought['sale_price'].min()]
 {% endhighlight %}
 
-Means Table for Listings Sold
+Table for Listings Sold         | Mean         |
 --------------------------------|--------------|
  price_per_sqfoot               |     410.187  |
  days_on_market                 |    88.8269   |
@@ -103,7 +103,7 @@ Means Table for Listings Sold
  percent_incontract_price_change|     -0.401518|
 
 
-Means Table for Listings Purchased
+Table for Listings Purchased     | Mean          | 
 ---------------------------------|---------------|
  price_per_sqfoot                |    431.367    |
  days_on_market                  |     68.0417   |
