@@ -39,6 +39,7 @@ plt.ylabel("Number of Listings Sold")
 plt.xlabel("Year")
 plt.show()
 {% endhighlight %}
+
 ![listings sold per year](https://user-images.githubusercontent.com/102122956/173249263-62a97339-c4fa-492e-8d00-c950b5d3ae43.png)
 
 {% highlight pythong %}
