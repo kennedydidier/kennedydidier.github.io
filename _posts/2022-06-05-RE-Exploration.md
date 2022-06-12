@@ -31,7 +31,7 @@ plt.show()
 
 ![total sales per year](https://user-images.githubusercontent.com/102122956/173248884-e50af173-a6c6-468b-aa40-2a315c67209b.png)
 
-{% highight python %}
+{% highlight python %}
 x=sold['sale_year']
 plt.hist(x, bins=10, color='orange', edgecolor='black', linestyle='-', alpha=0.5)
 plt.title("Listings Sold Per Year")
