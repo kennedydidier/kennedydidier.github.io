@@ -80,9 +80,10 @@ plt.show()
 Now that I have produced those first graphs, I want to generate a few more metrics for my client to give her a thorough overview of her portfolio.
 
 {% highlight python %}
-sold_mean_table=sold[['price_per_sqfoot', 'days_on_market', 'total_price_change', 'percent_price_change', 'incontract_price_change', 'percent_incontract_price_change']].mean()
+sold_mean_table=sold[['days_on_market', 'sale_price', 'price_per_sqfoot', 'original_price', 'last_list_price', 'total_price_change', 'total_percent_price_change', 'onmarket_price_change', 'percent_onmarket_price_change', 'incontract_price_change', 'percent_incontract_price_change', 'sq_feet', 'bedrooms']].mean()
 print(sold_mean_table.to_markdown())
-bought_mean_table=bought[['price_per_sqfoot', 'days_on_market', 'total_price_change', 'percent_price_change', 'onmarket_price_change', 'percent_onmarket_price_change', 'incontract_price_change', 'percent_incontract_price_change']].mean()
+
+bought_mean_table=bought[['days_on_market', 'sale_price', 'price_per_sqfoot', 'original_price', 'last_list_price', 'total_price_change', 'total_percent_price_change', 'onmarket_price_change', 'percent_onmarket_price_change', 'incontract_price_change', 'percent_incontract_price_change', 'sq_feet', 'bedrooms']].mean()
 print(bought_mean_table.to_markdown())
 
 sold[sold['sale_price']==sold['sale_price'].max()]
@@ -93,25 +94,41 @@ bought[bought['sale_price']==bought['sale_price'].min()]
 
 Table for Listings Sold          | Average        |
 ---------------------------------|----------------|
- Price Per Sq.Ft                 |     410.187    |
  Days on Market                  |    88.8269     |
- Total Price Change              | -76000.0000    |
- Percent Price Change            |   -2.7678%     |
- In Contract Price Change        | -17555.8000    |
- Percent In Contract Price Change|     -0.401518% |
+ Sale Price                      |   $1513942.308 |
+ Sale Price Per Sq.Ft            | $410.187/sq.ft |
+ Original Price                  |   $1589942.308 |
+ Last List Price                 | $1531498.077   |
+ Total Price Change ($)          | -$76000.0000   |
+ Total Price Change (%)          |   -3.0297%     |
+ On Market Price Change ($)      |     -$58444.23 |
+ On Market Price Change (%)      |     -2.768     |
+ In Contract Price Change ($)    |     -$17555.77 |
+ In Contract Price Change (%)    |     -.4015     |
+ Square Feet                     | 3819.808 sq.ft | 
+ Bedrooms                        |        4.615   |
+ 
 
 
 
-
-
+\n
+\n
+\n
 
 Table for Listings Purchased      | Average        | 
 ----------------------------------|----------------|
- Price Per Sq.Ft                  |    431.367     |
- Days On Market                   |     68.0417    |
- Total Price Change               | -65695.8000    |
- Percent Price Change             |     -2.9030%   |
- In Contract Price Change         | -11966.7000    |
- Percent In Contract Price Change |     -0.153597% |
+ Days On Market                   |    68.0417     |
+ Sale Price                       |  $1442479.146  |
+ Sale Price Per Sq.Ft             | $431.1367/sq.ft|
+ Original Price                   |   $1508174.979 |
+ Last List Price                  | $1454445.813   |
+ Total Price Change ($)           | -$65695.8000   |
+ Total Price Change (%)           | -2.6613%       | 
+ On Market Price Change ($)       |     -$53729.2  |
+ On Market Price Change (%)       |       -2.903%  |
+ In Contract Price Change ($)     |       -11966.7 |
+ In Contract Price Change (%)     |       0.154%   |
+ Square Feet                      | 3397.69 sq.ft  |
+ Bedrooms                         | 4.375          |
 
 
