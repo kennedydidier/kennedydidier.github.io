@@ -8,8 +8,8 @@ After transforming my client's data appropriately, I now want to produce some de
 1. how many listings my client handled per year
       1. in how many she represented the seller 
       2. in how many she represented the buyer
- 2. the average price of listings in which she represented the buyer per year
- 3. the average price of listings in which she represented the seller per year
+ 2. the average price of listings in which she represented the seller per year
+ 3. the average price of listings in which she represented the buyer per year
  <!--more->
 
 {% highlight python %}
@@ -57,11 +57,19 @@ plt.show()
 {% highlight python %}
 sold.groupby('sale_year', as_index=False)['sale_price'].mean()
 sns.barplot('sale_year', 'sale_price', data=sold, ci=False)
-plt.title("Average Price of Listings per Year")
+plt.title("Average Price of Listings Sold per Year")
 plt.show()
 {% endhighlight %}
-![average listing price per year](https://user-images.githubusercontent.com/102122956/173246371-5adb8cbe-b188-4586-98d1-69d313838cb9.png)
+![avg price listings sold per year](https://user-images.githubusercontent.com/102122956/173249650-24c83071-9f09-4b51-9c88-3310323170c1.png)
 
 
+{% highlight python %}
+bought.groupby('sale_year', as_index=False)['sale_price'].mean()
+sns.barplot('sale_year', 'sale_price', data=bought, ci=False)
+plt.title("Average Price of Listings Purchased Per Year")
+plt.show()
+{% endhighlight %}
+
+![average price of listings purchased](https://user-images.githubusercontent.com/102122956/173249620-f2b74724-edcb-4a4d-badb-8ce9beb241a0.png)
 
 
