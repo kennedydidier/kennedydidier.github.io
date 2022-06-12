@@ -47,7 +47,7 @@ plt.show()
 
 ![listings sold per year](https://user-images.githubusercontent.com/102122956/173249263-62a97339-c4fa-492e-8d00-c950b5d3ae43.png)
 
-{% highlight pythong %}
+{% highlight python %}
 x=bought['sale_year']
 plt.hist(x, bins=10, color='green', edgecolor='black', linestyle='-', alpha=0.5)
 plt.title("Listings Purchased Per Year")
@@ -80,7 +80,7 @@ plt.show()
 Now that I have produced those first graphs, I want to generate a few more metrics for my client to give her a thorough overview of her portfolio.
 
 {% highlight python %}
-sold_mean_table=sold[['price_per_sqfoot', 'days_on_market', 'total_price_change', 'percent_price_change', 'onmarket_price_change', 'percent_onmarket_price_change', 'incontract_price_change', 'percent_incontract_price_change']].mean()
+sold_mean_table=sold[['price_per_sqfoot', 'days_on_market', 'total_price_change', 'percent_price_change', 'incontract_price_change', 'percent_incontract_price_change']].mean()
 print(sold_mean_table.to_markdown())
 bought_mean_table=bought[['price_per_sqfoot', 'days_on_market', 'total_price_change', 'percent_price_change', 'onmarket_price_change', 'percent_onmarket_price_change', 'incontract_price_change', 'percent_incontract_price_change']].mean()
 print(bought_mean_table.to_markdown())
@@ -97,8 +97,6 @@ Table for Listings Sold          | Average        |
  Days on Market                  |    88.8269     |
  Total Price Change              | -76000.0000    |
  Percent Price Change            |   -2.7678%     |
- On Market Price Change          | -58444.2000    |
- Percent On Market Price Change  |     -2.7678%   |
  In Contract Price Change        | -17555.8000    |
  Percent In Contract Price Change|     -0.401518% |
 
@@ -113,8 +111,6 @@ Table for Listings Purchased      | Average        |
  Days On Market                   |     68.0417    |
  Total Price Change               | -65695.8000    |
  Percent Price Change             |     -2.9030%   |
- On Market Price Change           | -53729.2000    |
- Percent On Market Price Change   |     -2.9030%   |
  In Contract Price Change         | -11966.7000    |
  Percent In Contract Price Change |     -0.153597% |
 
