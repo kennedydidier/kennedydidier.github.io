@@ -13,6 +13,11 @@ After transforming my client's data appropriately, I now want to produce some de
 
 {% highlight python %}
 
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+from tabulate import tabulate
 dat['sale_price'].describe()
 dat['total_price_change'].describe()
 dat['total_percent_price_change'].describe()
@@ -75,25 +80,38 @@ plt.show()
 Now that I have produced those first graphs, I want to generate a few more metrics for my client to give her a thorough overview of her portfolio.
 
 {% highlight python %}
-sold['price_per_sqfoot'].mean()
-bought['price_per_sqfoot'].mean()
-sold['days_on_market'].mean()
-bought['days_on_market'].mean()
-sold['percent_price_change'].mean()
-sold['total_price_change'].mean()
-bought['percent_price_change'].mean()
-bought['total_price_change'].mean()
-sold['onmarket_price_change'].mean()
-sold['percent_onmarket_price_change'].mean()
-bought['onmarket_price_change'].mean()
-bought['percent_onmarket_price_change'].mean()
-bought['incontract_price_change'].mean()
-bought['percent_incontract_price_change'].mean()
-sold['incontract_price_change'].mean()
-sold['percent_incontract_price_change'].mean()
+sold_mean_table=sold[['price_per_sqfoot', 'days_on_market', 'total_price_change', 'percent_price_change', 'onmarket_price_change', 'percent_onmarket_price_change', 'incontract_price_change', 'percent_incontract_price_change']].mean()
+print(sold_mean_table.to_markdown())
+bought_mean_table=bought[['price_per_sqfoot', 'days_on_market', 'total_price_change', 'percent_price_change', 'onmarket_price_change', 'percent_onmarket_price_change', 'incontract_price_change', 'percent_incontract_price_change']].mean()
+print(bought_mean_table.to_markdown())
+
 sold[sold['sale_price']==sold['sale_price'].max()]
 bought[bought['sale_price']==bought['sale_price'].max()]
 sold[sold['sale_price']==sold['sale_price'].min()]
 bought[bought['sale_price']==bought['sale_price'].min()]
 {% endhighlight %}
+
+Means Table for Listings Sold
+|:--------------------------------|--------------:|
+| price_per_sqfoot                |     410.187   |
+| days_on_market                  |     88.8269   |
+| total_price_change              | -76000.0000   |
+| percent_price_change            |     -2.7678   |
+| onmarket_price_change           | -58444.2000   |
+| percent_onmarket_price_change   |     -2.7678   |
+| incontract_price_change         | -17555.8000   |
+| percent_incontract_price_change |     -0.401518 |
+| :----------------------------------------------:|
+
+Means Table for Listings Purchased
+|:--------------------------------|--------------:|
+| price_per_sqfoot                |    431.367    |
+| days_on_market                  |     68.0417   |
+| total_price_change              | -65695.8000   |
+| percent_price_change            |     -2.9030   |
+| onmarket_price_change           | -53729.2000   |
+| percent_onmarket_price_change   |     -2.9030   |
+| incontract_price_change         | -11966.7000   |
+| percent_incontract_price_change |      0.153597 |
+|:-----------------------------------------------:|
 
