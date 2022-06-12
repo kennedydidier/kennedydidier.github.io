@@ -72,4 +72,28 @@ plt.show()
 
 ![average price of listings purchased](https://user-images.githubusercontent.com/102122956/173249620-f2b74724-edcb-4a4d-badb-8ce9beb241a0.png)
 
+Now that I have produced those first graphs, I want to generate a few more metrics for my client to give her a thorough overview of her portfolio.
+
+{% highlight python %}
+sold['price_per_sqfoot'].mean()
+bought['price_per_sqfoot'].mean()
+sold['days_on_market'].mean()
+bought['days_on_market'].mean()
+sold['percent_price_change'].mean()
+sold['total_price_change'].mean()
+bought['percent_price_change'].mean()
+bought['total_price_change'].mean()
+sold['onmarket_price_change'].mean()
+sold['percent_onmarket_price_change'].mean()
+bought['onmarket_price_change'].mean()
+bought['percent_onmarket_price_change'].mean()
+bought['incontract_price_change'].mean()
+bought['percent_incontract_price_change'].mean()
+sold['incontract_price_change'].mean()
+sold['percent_incontract_price_change'].mean()
+sold[sold['sale_price']==sold['sale_price'].max()]
+bought[bought['sale_price']==bought['sale_price'].max()]
+sold[sold['sale_price']==sold['sale_price'].min()]
+bought[bought['sale_price']==bought['sale_price'].min()]
+{% endhighlight %}
 
