@@ -77,7 +77,7 @@ plt.show()
 
 ![average price of listings purchased](https://user-images.githubusercontent.com/102122956/173249620-f2b74724-edcb-4a4d-badb-8ce9beb241a0.png)
 
-Now that I have produced those first graphs, I want to generate a few more metrics for my client to give her a thorough overview of her portfolio.
+Now that I have produced those first graphs and made them client-accessible, I want to generate a few more metrics for my client to give her a thorough overview of her portfolio.
 
 {% highlight python %}
 sold_mean_table=sold[['days_on_market', 'sale_price', 'price_per_sqfoot', 'original_price', 'last_list_price', 'total_price_change', 'total_percent_price_change', 'onmarket_price_change', 'percent_onmarket_price_change', 'incontract_price_change', 'percent_incontract_price_change', 'sq_feet', 'bedrooms']].mean()
@@ -128,4 +128,5 @@ Table for Listings Purchased      | Average        |
  Square Feet                      | 3397.69 sq.ft  |
  Bedrooms                         | 4.375          |
 
+So now I have a few graphs and a table of averages for her separated by listings in which she represented the buyer and listings in which she represented the seller. These calculations give my client a thorough, broad-stroked overview of her sales portfolio, before we get into looking at the graphical distribution of her listings and start building predictive models. Onto the next step!
 
