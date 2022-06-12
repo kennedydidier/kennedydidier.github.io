@@ -112,9 +112,9 @@ Table for Listings Purchased      | Average        |
  Price Per Sq.Ft                  |    431.367     |
  Days On Market                   |     68.0417    |
  Total Price Change               | -65695.8000    |
- Percent Price Change             |     -2.9030    |
+ Percent Price Change             |     -2.9030%   |
  On Market Price Change           | -53729.2000    |
- Percent On Market Price Change   |     -2.9030    |
+ Percent On Market Price Change   |     -2.9030%   |
  In Contract Price Change         | -11966.7000    |
  Percent In Contract Price Change |     -0.153597% |
 
