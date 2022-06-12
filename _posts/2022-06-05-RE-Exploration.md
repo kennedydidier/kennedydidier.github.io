@@ -91,27 +91,31 @@ sold[sold['sale_price']==sold['sale_price'].min()]
 bought[bought['sale_price']==bought['sale_price'].min()]
 {% endhighlight %}
 
-Table for Listings Sold         | Mean         |
---------------------------------|--------------|
- price_per_sqfoot               |     410.187  |
- days_on_market                 |    88.8269   |
- total_price_change             | -76000.0000  |
- percent_price_change           |   -2.7678    |
- onmarket_price_change          | -58444.2000  |
- percent_onmarket_price_change  |     -2.7678  |
- incontract_price_change        | -17555.8000  |
- percent_incontract_price_change|     -0.401518|
+Table for Listings Sold          | Average        |
+---------------------------------|----------------|
+ Price Per Sq.Ft                 |     410.187    |
+ Days on Market                  |    88.8269     |
+ Total Price Change              | -76000.0000    |
+ Percent Price Change            |   -2.7678%     |
+ On Market Price Change          | -58444.2000    |
+ Percent On Market Price Change  |     -2.7678%   |
+ In Contract Price Change        | -17555.8000    |
+ Percent In Contract Price Change|     -0.401518% |
 
 
-Table for Listings Purchased     | Mean          | 
----------------------------------|---------------|
- price_per_sqfoot                |    431.367    |
- days_on_market                  |     68.0417   |
- total_price_change              | -65695.8000   |
- percent_price_change            |     -2.9030   |
- onmarket_price_change           | -53729.2000   |
- percent_onmarket_price_change   |     -2.9030   |
- incontract_price_change         | -11966.7000   |
- percent_incontract_price_change |      0.153597 |
+
+
+
+
+Table for Listings Purchased      | Average        | 
+----------------------------------|----------------|
+ Price Per Sq.Ft                  |    431.367     |
+ Days On Market                   |     68.0417    |
+ Total Price Change               | -65695.8000    |
+ Percent Price Change             |     -2.9030    |
+ On Market Price Change           | -53729.2000    |
+ Percent On Market Price Change   |     -2.9030    |
+ In Contract Price Change         | -11966.7000    |
+ Percent In Contract Price Change |     -0.153597% |
 
 
