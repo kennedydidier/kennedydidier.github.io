@@ -10,7 +10,6 @@ After transforming my client's data appropriately, I now want to produce some de
       2. in how many she represented the buyer
  2. the average price of listings in which she represented the seller per year
  3. the average price of listings in which she represented the buyer per year
- <!--more->
 
 {% highlight python %}
 
