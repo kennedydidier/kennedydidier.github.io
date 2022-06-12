@@ -92,26 +92,26 @@ bought[bought['sale_price']==bought['sale_price'].min()]
 {% endhighlight %}
 
 Means Table for Listings Sold
-|--------------------------------|--------------|
-| price_per_sqfoot               |     410.187  |
-| days_on_market                 |    88.8269   |
-| total_price_change             | -76000.0000  |
-| percent_price_change           |   -2.7678    |
-| onmarket_price_change          | -58444.2000  |
-| percent_onmarket_price_change  |     -2.7678  |
-| incontract_price_change        | -17555.8000  |
-| percent_incontract_price_change|     -0.401518|
-|-----------------------------------------------|
+--------------------------------|--------------|
+ price_per_sqfoot               |     410.187  |
+ days_on_market                 |    88.8269   |
+ total_price_change             | -76000.0000  |
+ percent_price_change           |   -2.7678    |
+ onmarket_price_change          | -58444.2000  |
+ percent_onmarket_price_change  |     -2.7678  |
+ incontract_price_change        | -17555.8000  |
+ percent_incontract_price_change|     -0.401518|
+
 
 Means Table for Listings Purchased
-|---------------------------------|---------------|
-| price_per_sqfoot                |    431.367    |
-| days_on_market                  |     68.0417   |
-| total_price_change              | -65695.8000   |
-| percent_price_change            |     -2.9030   |
-| onmarket_price_change           | -53729.2000   |
-| percent_onmarket_price_change   |     -2.9030   |
-| incontract_price_change         | -11966.7000   |
-| percent_incontract_price_change |      0.153597 |
-|-------------------------------------------------|
+---------------------------------|---------------|
+ price_per_sqfoot                |    431.367    |
+ days_on_market                  |     68.0417   |
+ total_price_change              | -65695.8000   |
+ percent_price_change            |     -2.9030   |
+ onmarket_price_change           | -53729.2000   |
+ percent_onmarket_price_change   |     -2.9030   |
+ incontract_price_change         | -11966.7000   |
+ percent_incontract_price_change |      0.153597 |
+
 
