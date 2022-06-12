@@ -18,7 +18,7 @@ import seaborn as sns
 import warnings
 warnings.filterwarnings('ignore')
 
-dat=pd.read_csv("~/cindydatabookfinal.csv")
+dat=pd.read_csv("~/listingdata.csv")
 dat
 dat.shape
 dat.columns
@@ -43,7 +43,7 @@ dat['last_list_price']=dat['last_list_price'].astype(int)
 print(dat)
 dat['total_price_change']=dat.apply(lambda row: row.sale_price-row.original_price, axis=1)
 dat['total_percent_price_change']=dat.apply(lambda row: (row.total_price_change/row.original_price) * 100, axis=1)
-dat['onmarket_price_change']=dat.apply(lambda row: row.last_list_price-row.original_price), axis=1)
+dat['onmarket_price_change']=dat.apply(lambda row: row.last_list_price-row.original_price, axis=1)
 dat['percent_onmarket_price_change']=dat.apply(lambda row: (row.onmarket_price_change/row.original_price)* 100, axis=1)
 dat['incontract_price_change']=dat.apply(lambda row: row.sale_price-row.last_list_price, axis=1)
 dat['percent_incontract_price_change']=dat.apply(lambda row: (row.incontract_price_change/row.last_list_price) * 100, axis=1)
