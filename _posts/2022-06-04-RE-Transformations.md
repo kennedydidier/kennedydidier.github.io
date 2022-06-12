@@ -27,7 +27,7 @@ dat.describe()
 dat.isnull().sum()
 {% endhighlight %}
 
-It looks like most of the data is complete. I have columns for address, city, zipcode, sale year, sale month, sale day, square feet, school district, days on the market, original list price, last list price, sale price, among others. There are there are several nulls in the columns _sale_brokerage_, _sale_agent_, _buying_agent_, and _buying_brokerage_, but it looks like Cindy has identified for each listing whether she represented the seller or the buyer. This is important, as the metrics we want to track differ by which she represented. 
+It looks like most of the data is complete. I have columns for address, city, zipcode, sale year, sale month, sale day, square feet, school district, days on the market, original list price, last list price, sale price, among others. There are there are several nulls in the columns _sale_brokerage_, _sale_agent_, _buying_agent_, and _buying_brokerage_, but it looks like Cindy has at least identified for each listing whether she represented the seller or the buyer. This is important, as the metrics we want to track differ by which she represented. 
 
 My first tasks are to generate some new columns and alter some others so I can generate useful descriptive statistics for my client.
 
