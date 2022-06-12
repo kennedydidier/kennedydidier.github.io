@@ -106,14 +106,11 @@ Table for Listings Sold          | Average        |
  In Contract Price Change ($)    |     -$17555.77 |
  In Contract Price Change (%)    |     -.4015     |
  Square Feet                     | 3819.808 sq.ft | 
- Bedrooms                        |        4.615   |
- 
+ Bedrooms                        |        4.615   |  
 
-
-
-\n
-\n
-\n
+  
+  
+  
 
 Table for Listings Purchased      | Average        | 
 ----------------------------------|----------------|
