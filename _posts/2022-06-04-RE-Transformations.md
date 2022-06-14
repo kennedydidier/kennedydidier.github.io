@@ -47,6 +47,7 @@ dat['onmarket_price_change']=dat.apply(lambda row: row.last_list_price-row.origi
 dat['percent_onmarket_price_change']=dat.apply(lambda row: (row.onmarket_price_change/row.original_price)* 100, axis=1)
 dat['incontract_price_change']=dat.apply(lambda row: row.sale_price-row.last_list_price, axis=1)
 dat['percent_incontract_price_change']=dat.apply(lambda row: (row.incontract_price_change/row.last_list_price) * 100, axis=1)
+dat['address']=dat['address'].map(str)+ ', ' + dat['city'].map(str) + ', NY ' + dat['zip'].map(str)
 
 bought=dat[(dat.buying_agent == "Cindy Schwall") & (dat.sale_agent != "Cindy Schwall")]
 bought.info()
