@@ -128,5 +128,5 @@ Table for Listings Purchased      | Average        |
  Square Feet                      | 3397.69 sq.ft  |
  Bedrooms                         | 4.375          |
 
-So now I have a few graphs and a table of averages for her separated by listings in which she represented the buyer and listings in which she represented the seller. These calculations give my client a thorough, broad-stroked overview of her sales portfolio, before we get into looking at the graphical distribution of her listings and start building predictive models. Onto the next step!
+So now I have a few graphs and a table of averages for her, separated by listings in which she represented the buyer and listings in which she represented the seller. We can see here that my client has an impressive 97% sell ratio, and gets houses off-market in under 90 days. These calculations give my client a thorough, broad-strokes overview of her sales portfolio, before we get into looking at the graphical distribution of her listings and start building predictive models. Onto the next step!
 
