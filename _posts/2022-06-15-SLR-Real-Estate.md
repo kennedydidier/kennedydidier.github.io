@@ -5,14 +5,57 @@ categories: python, structured learning algorithms, modeling, data analysis, rea
 ---
 
 Now that I've produced preliminary graphs and a interactive map of listings for my client, it's time to get into the real heart of my project: building regression models that predict import KPIs. Based on our prior conversations, I know the first things she is interested in are:  
-    1. The influence of **sale year** on the average **price** of  
-          (a.) the listings she sells for clients and  
-          (b.) the listings her clients purchase.  
-    2. The influence of **listing price** on the amount of **time** a listing spends on the market.  
-    3. The influence of **neighborhood** on **home price.**  
-    4. The influence of various **house characteristics** on the average **price increase or decrease** of a listing.  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1. The influence of **neighborhood** on **home price.**  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2. The influence of various **house characteristics** on **home price**.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 3. The influence of **sale year** on the average **price** of  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(a.) the listings she sells for clients and  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(b.) the listings her clients purchase.  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 4. The influence of **listing price** on the amount of **time** a listing spends on the market. 
 
 All of my dependent variables in these inquiries are continuous, and I'm first interested in exploring the simple relationships between one independent variable and one dependent variable, so I'll begin by building simple ordinary least squares linear regression algorithms.
+
+#### Neighborhood on Home Price, Price Per Square Foot, and Total Price Change
+
+For the next few models, I'm going to use datasets that include listings both sold and purchased for clients because we really want a glimpse of house characteristics, not realtor KPIs. 
+{% highlight python %}
+dat.neighborhood=dat.neighborhood.fillna('outside_scarsdale')
+sns.boxplot(y='sale_price', x='neighborhood', data=dat)
+plt.xlabel('Neighborhood')
+plt.ylabel('Sale Price (Millions)')
+plt.title('Boxplot of Neighborhood on Price')
+plt.show()
+{% endhighlight %}
+
+![boxplot neighborhoo price](https://user-images.githubusercontent.com/102122956/174687174-69601e40-ff1f-4d13-841f-e2c8c76e65f4.png)
+
+
+This suggests there may be a neighborhood influence on sale price of my client's listings, with Heathcote and Fox Meadow having higher average home price than Quaker Ridge, Greenacres, and Edgewood. I now want to run a linear regression using dummy variables for each of the neighborhoods to determine if this is statistically significant.
+
+
+
+{% highlight python %}
+
+
+x=dat['neighborhood']
+y=dat['sale_price']
+x=pd.get_dummies(data=x, drop_first=True)
+x_train, x_test, y_train, y_test=train_test_split(x, y, test_size=0.33)
+reg=LinearRegression()
+reg.fit(x_train, y_train)
+pred=reg.predict(x_test)
+>>>.2867866952610716
+reg.score(x_test, y_test)
+x_stat=sm.add_constant(x_train)
+regsum=sm.OLS(y_train, x_stat).fit()
+regsum.summary()
+
+{% endhighlight %}
+
+<img width="605" alt="Screen Shot 2022-06-20 at 7 07 42 PM" src="https://user-images.githubusercontent.com/102122956/174687344-ee753089-d5e3-4bff-9f31-4764923639ed.png">
+<img width="603" alt="Screen Shot 2022-06-20 at 7 08 08 PM" src="https://user-images.githubusercontent.com/102122956/174687378-2ca5f29c-200e-4822-a5b2-dff60a9c1e87.png">
+
+This return is really informative. I can now see that this model predicts sale price correctly 28% of the time, and that all of my dummy variables for neighborhoods are statistically significant at the p<0.05 level except those "Outside Scarsdale". The comparison neighborhood was Edgewood, which, as visible in the boxplot, has the lowest average sale price. According to our regression output, Heathcote has the largest positive impact on sale price. This is consistent with the suspicions of my client, who told me at our initial meeting that Heathcote was the wealthiest and most desirable neighborhood in Scarsdale. Fox Meadow has the second highest coefficient, followed by Greenacres and Quaker Ridge which have about the same coefficient.
+
 
 #### Simple Linear Regression of Sale Year on Price of Listings Sold for Clients
 
@@ -110,47 +153,11 @@ After repeating the same process from above, the univariate model using Price to
 
 This does not mean I have nothing to report to my client about these figures, however. The absence of statistical significance is, in fact, important to my client -- I can tell her that the prices of the homes she sells and the homes she purchases are not dependent on the year in which the sale occurs, meaning variation in sale price must be the result of another factor. Likewise, I can inform her that in this univariate model, the amount of time a listing spent on the market was not significantly or clearly related to the price of that listing, meaning that variation in days on market must be explicable by other factors (neighborhood, number of bedrooms, etc.). While not significant in simple linear models, I will return to these variables when building multiple regression models later.
 
-#### Neighborhood on Home Price, Price Per Square Foot, and Total Price Change
-
-For the next few models, I'm going to use datasets that include listings both sold and purchased for clients because we really want a glimpse of house characteristics, not realtor KPIs. 
-{% highlight python %}
-dat.neighborhood=dat.neighborhood.fillna('outside_scarsdale')
-sns.boxplot(y='sale_price', x='neighborhood', data=dat)
-plt.xlabel('Neighborhood')
-plt.ylabel('Sale Price (Millions)')
-plt.title('Boxplot of Neighborhood on Price')
-plt.show()
-{% endhighlight %}
-
-![boxplot neighborhoo price](https://user-images.githubusercontent.com/102122956/174687174-69601e40-ff1f-4d13-841f-e2c8c76e65f4.png)
-
-
-This suggests there may be a neighborhood influence on sale price of my client's listings, with Heathcote and Fox Meadow having higher average home price than Quaker Ridge, Greenacrs, and Edgewood. I now want to run a linear regression using dummy variables for each of the neighborhoods to determine if this is statistically significant.
-
-{% highlight python %}
-
-
-x=dat['neighborhood']
-y=dat['sale_price']
-x=pd.get_dummies(data=x, drop_first=True)
-x_train, x_test, y_train, y_test=train_test_split(x, y, test_size=0.33)
-reg=LinearRegression()
-reg.fit(x_train, y_train)
-pred=reg.predict(x_test)
->>>.2867866952610716
-reg.score(x_test, y_test)
-x_stat=sm.add_constant(x_train)
-regsum=sm.OLS(y_train, x_stat).fit()
-regsum.summary()
-
-{% endhighlight %}
-
-<img width="605" alt="Screen Shot 2022-06-20 at 7 07 42 PM" src="https://user-images.githubusercontent.com/102122956/174687344-ee753089-d5e3-4bff-9f31-4764923639ed.png">
-<img width="603" alt="Screen Shot 2022-06-20 at 7 08 08 PM" src="https://user-images.githubusercontent.com/102122956/174687378-2ca5f29c-200e-4822-a5b2-dff60a9c1e87.png">
 
 
 
-This return is really informative. I can now see that this model predicts sale price correctly 28% of the time, and that all of my dummy variables for neighborhoods are statistically significant at the p<0.05 level except those "Outside Scarsdale". The comparison neighborhood was Edgewood, which, as visible in the boxplot, has the lowest average sale price. According to our regression output, Heathcote has the largest positive impact on sale price. This is consistent with the suspicions of my client, who told me at our initial meeting that Heathcote was the wealthiest and most desirable neighborhood in Scarsdale. Fox Meadow has the second highest coefficient, followed by Greenacres and Quaker Ridge which have about the same coefficient.
+
+
 
 
 
