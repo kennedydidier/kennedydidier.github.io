@@ -137,7 +137,7 @@ x_train, x_test, y_train, y_test=train_test_split(x, y, test_size=0.33)
 reg=LinearRegression()
 reg.fit(x_train, y_train)
 pred=reg.predict(x_test)
-.2867866952610716
+>>>.2867866952610716
 reg.score(x_test, y_test)
 x_stat=sm.add_constant(x_train)
 regsum=sm.OLS(y_train, x_stat).fit()
