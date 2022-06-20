@@ -72,6 +72,15 @@ I repeated the same splitting, regression, and plotting process for the purchase
 ![lrptb train](https://user-images.githubusercontent.com/102122956/174651831-031300f7-9e28-4235-8e26-68324a6e5ea8.png)
 ![lrptb test](https://user-images.githubusercontent.com/102122956/174653005-27ac2e9b-b670-4ca9-82e4-02c5ce8ee2aa.png)
 
+This looks like there might be an influence of purchase year on purchase price. Again, I want to call the OLS module to assess its statistical significance. 
+
+{% highlight python %}
+x_stat=sm.add_constant(x_train)
+lrptbsum=sm.OLS(y_train, x_stat).fit()
+lrptbsum.summary()
+{% endhighlight %}
+
+It looks like these are still not statistically significant. 
 
 
 
