@@ -6,7 +6,7 @@ categories: python, structured learning algorithms, modeling, data analysis, rea
 
 Now that I've produced preliminary graphs and a interactive map of listings for my client, it's time to get into the real heart of my project: building regression models that predict import KPIs. Based on our prior conversations, I know the first things she is interested in are:  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1. The influence of **neighborhood** on **home price.**  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2. The influence of various **house characteristics** on **home price**.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2. The influence of various **house characteristics** on **home price**.  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 3. The influence of **sale year** on the average **price** of  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(a.) the listings she sells for clients and  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(b.) the listings her clients purchase.  
