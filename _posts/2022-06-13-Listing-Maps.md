@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Mapping Client Listings
-categories: python, mapping, data exploration
+categories: python, mapping, dataexploration, realestate
 ---
 
 
