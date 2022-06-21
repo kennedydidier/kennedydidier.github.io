@@ -14,51 +14,11 @@ Now that I've produced preliminary graphs and a interactive map of listings for 
 
 All of my dependent variables in these inquiries are continuous, and I'm first interested in exploring the simple relationships between one independent variable and one dependent variable, so I'll begin by building simple ordinary least squares linear regression algorithms.
 
-#### Neighborhood on Home Price, Price Per Square Foot, and Total Price Change
+#### Simple Linear Regression of Home Price, Price Per Square Foot, and Total Price Change on Neighborhood
 
-For the next few models, I'm going to use datasets that include listings both sold and purchased for clients because we really want a glimpse of house characteristics, not realtor KPIs. 
-{% highlight python %}
-dat.neighborhood=dat.neighborhood.fillna('outside_scarsdale')
-sns.boxplot(y='sale_price', x='neighborhood', data=dat)
-plt.xlabel('Neighborhood')
-plt.ylabel('Sale Price (Millions)')
-plt.title('Boxplot of Neighborhood on Price')
-plt.show()
-{% endhighlight %}
+For the first few models, I'm going to use datasets that include listings both sold and purchased for clients because I'm interested in house characteristics. 
 
-![boxplot neighborhoo price](https://user-images.githubusercontent.com/102122956/174687174-69601e40-ff1f-4d13-841f-e2c8c76e65f4.png)
-
-
-This suggests there may be a neighborhood influence on sale price of my client's listings, with Heathcote and Fox Meadow having higher average home price than Quaker Ridge, Greenacres, and Edgewood. I now want to run a linear regression using dummy variables for each of the neighborhoods to determine if this is statistically significant.
-
-
-
-{% highlight python %}
-
-
-x=dat['neighborhood']
-y=dat['sale_price']
-x=pd.get_dummies(data=x, drop_first=True)
-x_train, x_test, y_train, y_test=train_test_split(x, y, test_size=0.33)
-reg=LinearRegression()
-reg.fit(x_train, y_train)
-pred=reg.predict(x_test)
->>>.2867866952610716
-reg.score(x_test, y_test)
-x_stat=sm.add_constant(x_train)
-regsum=sm.OLS(y_train, x_stat).fit()
-regsum.summary()
-
-{% endhighlight %}
-
-<img width="605" alt="Screen Shot 2022-06-20 at 7 07 42 PM" src="https://user-images.githubusercontent.com/102122956/174687344-ee753089-d5e3-4bff-9f31-4764923639ed.png">
-<img width="603" alt="Screen Shot 2022-06-20 at 7 08 08 PM" src="https://user-images.githubusercontent.com/102122956/174687378-2ca5f29c-200e-4822-a5b2-dff60a9c1e87.png">
-
-This return is really informative. I can now see that this model predicts sale price correctly 28% of the time, and that all of my dummy variables for neighborhoods are statistically significant at the p<0.05 level except those "Outside Scarsdale". The comparison neighborhood was Edgewood, which, as visible in the boxplot, has the lowest average sale price. According to our regression output, Heathcote has the largest positive impact on sale price. This is consistent with the suspicions of my client, who told me at our initial meeting that Heathcote was the wealthiest and most desirable neighborhood in Scarsdale. Fox Meadow has the second highest coefficient, followed by Greenacres and Quaker Ridge which have about the same coefficient.
-
-
-#### Simple Linear Regression of Sale Year on Price of Listings Sold for Clients
-
+Because my predictor variable is categorical, I want to start off by visualizing my data using a boxplot.
 
 {% highlight python %}
 import pandas as pd
@@ -70,9 +30,141 @@ import seaborn as sns
 from sklearn.model_selection import train_test_split
 import statsmodels.api as sm
 
+dat.neighborhood=dat.neighborhood.fillna('outside_scarsdale')
+sns.boxplot(y='sale_price', x='neighborhood', data=dat)
+plt.xlabel('Neighborhood')
+plt.ylabel('Sale Price (Millions)')
+plt.title('Boxplot of Neighborhood on Price')
+plt.show()
 {% endhighlight %}
 
-I'm going to start by looking at a boxplot of Year and Sale Price.
+![boxplot neighborhoo price](https://user-images.githubusercontent.com/102122956/174687174-69601e40-ff1f-4d13-841f-e2c8c76e65f4.png)
+
+
+This preliminary boxplot suggests there may be a neighborhood influence on sale price of my client's listings, with Heathcote and Fox Meadow having a higher average home price than Quaker Ridge, Greenacres, and Edgewood. I now want to run a linear regression using dummy variables for each of the neighborhoods to determine if this is statistically significant.
+
+
+{% highlight python %}
+
+x=dat['neighborhood']
+y=dat['sale_price']
+x=pd.get_dummies(data=x, drop_first=True)
+x_train, x_test, y_train, y_test=train_test_split(x, y, test_size=0.33)
+reg=LinearRegression()
+reg.fit(x_train, y_train)
+pred=reg.predict(x_test)
+reg.score(x_test, y_test)
+>>>0.2867866952610716
+x_stat=sm.add_constant(x_train)
+regsum=sm.OLS(y_train, x_stat).fit()
+regsum.summary()
+
+{% endhighlight %}
+
+<img width="605" alt="Screen Shot 2022-06-20 at 7 07 42 PM" src="https://user-images.githubusercontent.com/102122956/174687344-ee753089-d5e3-4bff-9f31-4764923639ed.png">
+<img width="603" alt="Screen Shot 2022-06-20 at 7 08 08 PM" src="https://user-images.githubusercontent.com/102122956/174687378-2ca5f29c-200e-4822-a5b2-dff60a9c1e87.png">
+
+This return is really informative. I can now see that this model predicts sale price correctly 28% of the time, and that all of my dummy variables for neighborhoods are statistically significant at the p<0.05 level except those "Outside Scarsdale". The comparison neighborhood was Edgewood, which, as visible in the boxplot, has the lowest average sale price. According to our regression output, Heathcote has the largest positive impact on sale price. This is consistent with the suspicions of my client, who told me at our initial meeting that she thinks her most expensive listings are in Heathcote, and that it is considered the wealthiest and most desirable neighborhood in Scarsdale. Fox Meadow has the second highest coefficient, followed by Greenacres and Quaker Ridge which have about the same coefficient. Finally, the returned R-squared value suggests that neighborhood does account for a significant amount of the variance in sale price of my client's listings.
+
+While my client asked specifically asked for neighborhood on sale price, I also want to provide her information on the influence of neighborhood on price per square foot, and also on days on market.
+
+
+{% highlight python %}
+sns.boxplot(y='price_per_sqfoot', x='neighborhood', data=dat)
+plt.xlabel('Neighborhood')
+plt.ylabel('Price Per Square Foot')
+plt.title('Boxplot of Price Per Square Foot on Neighborhood')
+plt.show()
+
+{% endhighlight %}
+
+![bp neighborhood ppsft](https://user-images.githubusercontent.com/102122956/174692469-e50eed06-4479-45c2-a47e-f8550aa0d6ae.png)
+
+{% highlight python %}
+y=dat['price_per_sqfoot']
+x=dat['neighborhood']
+x=pd.get_dummies(data=x, drop_first=True)
+x_train, x_test, y_train, y_test=train_test_split(x, y, test_size=0.33)
+reg=LinearRegression()
+reg.fit(x_train, y_train)
+pred=reg.predict(x_test)
+reg.score(x_test, y_test)
+>>>0.07323535828660688
+x_stat=sm.add_constant(x_train)
+regsum=sm.OLS(y_train, x_stat).fit()
+regsum.summary()
+
+{% endhighlight %}
+
+My output for price per square foot reveals that there is a negligible and non-statistically significant amount of variance in price per square foot explained by neighborhood. Maybe the number of bedrooms or other factors influences this more. Let's try Days on Market!
+
+{% highlight python %}
+
+sns.boxplot(y='days_on_market', x='neighborhood', data=dat)
+plt.xlabel('Neighborhood')
+plt.ylabel('Days on Market')
+plt.title('Boxplot of Days on Market on Neighborhood')
+plt.show()
+
+{% endhighlight %}
+
+![bxp dm on neigh](https://user-images.githubusercontent.com/102122956/174698948-10dd36af-b14b-4a45-be7a-096ba04b0208.png)
+
+This boxplot looks..... fuzzy, likely due to the presence of outliers. This will likely be reproduced in our training set. I'm going to make sure to model our training set using a robust regression algorithm.
+
+{% highlight python %}
+from sklearn.linear_model import HuberRegressor
+y=dat['days_on_market']
+x=dat['neighborhood']
+x=pd.get_dummies(data=x, drop_first=True)
+x_train, x_test, y_train, y_test=train_test_split(x, y, test_size=0.33)
+mod=HuberRegressor()
+mod.fit(x_train, y_train)
+pred=mod.predict(x_test)
+mod.score(x_test, y_test)
+>>>-0.1399834593199174
+x_stat=sm.add_constant(x_train)
+modsum=sm.RLM(y_train, x_stat, M=sm.robust.norms.HuberT())
+modsumres=modsum.fit()
+modsumres.summary()
+
+{% endhighlight %}
+
+According to this, our model (one variable, neighborhood) predicts days on market very very poorly. Only Heathcote's coefficient is statistically significant. Let's move on and return to the neighborhood variable when we build additive predictive models.
+
+
+#### Sale Price Regressed on Various House Characteristics
+
+My client wants to know how two specific home characteristics (style and number of bedrooms) influence sale price. Let's take a look!
+
+{% highlight python %}
+dat['style'].value_counts()
+
+{% endhighlight %}
+
+It looks like there aren't really enough instances of any styles other than colonial, tudor, and contemporary to appropriately include, so I am going to constrict my dataset to only those.
+
+{% highlight python %}
+sdat=dat[(dat['style'] == 'colonial') | (dat['style'] == 'tudor') | (dat['style'] == 'contemporary')]
+sns.boxplot(y='sale_price', x='style', data=sdat)
+plt.xlabel('Style')
+plt.ylabel('Sale Price')
+plt.title('Boxplot of Sale Price Regressed on Style')
+plt.show()
+{% endhighlight %}
+
+![bp sp s](https://user-images.githubusercontent.com/102122956/174707685-c0922d03-daa1-404a-ae12-95d03e0af05c.png)
+
+After repeating the same regression process as above, I determined no styles were statistically significant at predicting Sale Price.
+
+{% highlight python %}
+
+{% endhighlight %}
+
+
+#### Simple Linear Regression of Sale Year on Price of Listings Sold for Clients
+
+For this project, I'm going to start by looking at a boxplot of Year and Sale Price, only for listings in which ny client represented sellers (i.e., for listings she was responsible for selling for clients). 
 
 {% highlight python %}
 sns.boxplot(y='sale_price', x='sale_year', data=sold)
