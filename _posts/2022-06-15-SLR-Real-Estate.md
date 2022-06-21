@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Simple Linear Regression Algorithms on Client Real Estate Data
-categories: python, structured learning algorithms, modeling, data analysis, real estate
+categories: python, structuredlearningalgorithms, prediction, dataanalysis, realestate
 ---
 
 Now that I've produced preliminary graphs and a interactive map of listings for my client, it's time to get into the real heart of my project: building regression models that predict import KPIs. Based on our prior conversations, I know the first things she is interested in are:  
