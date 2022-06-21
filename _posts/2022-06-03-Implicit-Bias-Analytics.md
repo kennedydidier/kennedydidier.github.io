@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Exploring Employer Implicit Bias Data
-categories: [r, data exploration, business analytics, descriptive statistics]
+categories: [r, dataexploration, businessanalytics, descriptivestatistics]
 ---
 
 As part of my doctoral degree, I worked with lots of social science data. When I got bored with the social scientific mode of analysis, I began to look for opportunities to reanalyze these data in order to generate important business analytics and insight and hone my data analysis skills.   
