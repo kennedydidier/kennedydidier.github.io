@@ -20,6 +20,7 @@ For the first few models, I'm going to use datasets that include listings both s
 
 Because my predictor variable is categorical, I want to start off by visualizing my data using a boxplot.
 
+**Sale Price Regressed on Neighborhood**
 {% highlight python %}
 import pandas as pd
 import numpy as np
@@ -68,7 +69,7 @@ This return is really informative. I can now see that this model predicts sale p
 
 While my client asked specifically asked for neighborhood on sale price, I also want to provide her information on the influence of neighborhood on price per square foot, and also on days on market.
 
-
+**Price Per Square Foot Regressed on Neighborhood**
 {% highlight python %}
 sns.boxplot(y='price_per_sqfoot', x='neighborhood', data=dat)
 plt.xlabel('Neighborhood')
@@ -97,6 +98,8 @@ regsum.summary()
 {% endhighlight %}
 
 My output for price per square foot reveals that there is a negligible and non-statistically significant amount of variance in price per square foot explained by neighborhood. Maybe the number of bedrooms or other factors influences this more. Let's try Days on Market!
+
+**Days on Market Regressed on Neighborhood**
 
 {% highlight python %}
 
@@ -135,11 +138,12 @@ According to this, our model (one variable, neighborhood) predicts days on marke
 
 #### Sale Price Regressed on Various House Characteristics
 
-My client wants to know how two specific home characteristics (style and number of bedrooms) influence sale price. Let's take a look!
+My client wants to know how two specific home characteristics (style and year built) influence sale price. Let's take a look!
+
+**Sale Price Regressed on Style**
 
 {% highlight python %}
 dat['style'].value_counts()
-
 {% endhighlight %}
 
 It looks like there aren't really enough instances of any styles other than colonial, tudor, and contemporary to appropriately include, so I am going to constrict my dataset to only those.
@@ -155,16 +159,60 @@ plt.show()
 
 ![bp sp s](https://user-images.githubusercontent.com/102122956/174707685-c0922d03-daa1-404a-ae12-95d03e0af05c.png)
 
-After repeating the same regression process as above, I determined no styles were statistically significant at predicting Sale Price.
+After repeating the same regression process as above, I determined no styles were statistically significant at predicting Sale Price. Let's take a look at Year Built!
+
+**Sale Price Regressed on Year Built**
 
 {% highlight python %}
-
+x=dat['year_built']
+y=dat['sale_price']
+x_train, x_test, y_train, y_test=train_test_split(x, y, test_size=0.33)
+x_test=x_test.to_numpy().reshape(-1,1)
+x_train=x_train.to_numpy().reshape(-1,1)
+y_test=y_test.to_numpy().reshape(-1,1)
+y_train=y_train.to_numpy().reshape(-1,1)
+lryp=LinearRegression()
+lryp.fit(x_train, y_train)
+y_pred=lryp.predict(x_test)
+plt.scatter(x_train, y_train, color='dodgerblue')
+plt.plot(x_train, lryp.predict(x_train), color='darkred')
+plt.title('Price Regressed on Year Built -- Training Set')
+plt.xlabel('Year Built')
+plt.ylabel('Sale Price')
+plt.show()
+plt.scatter(x_test, y_test, color='pink')
+plt.plot(x_train, lryp.predict(x_train), color='darkred')
+plt.title('Price Regressed on Year Built -- Test Set')
+plt.xlabel('Year Built')
+plt.ylabel('Sale Price')
+plt.show()
 {% endhighlight %}
+
+![p on year train](https://user-images.githubusercontent.com/102122956/174856791-3e7fda92-93c6-4018-9279-48e2024c535f.png)
+
+![price on y test](https://user-images.githubusercontent.com/102122956/174857433-95307911-6565-4008-8c13-85609829fdd1.png)
+
+It looks like there's a slight positive influence of year built on sale price, but want more confirmation that our trained regression line fits our test data. Let's call the OLS estimator module, and score the models performance.
+
+{% highlight python %}
+lryp.score(x_test, y_test)
+>>>0.024305825696060768
+{% endhighlight %}
+
+Yikes. This model is only correct 2% of the time!
+
+{% highlight python %}
+x_stat=sm.add_constant(x_train)
+lrypsum=sm.OLS(y_train, x_stat).fit()
+lrypsum.summary()
+{% endhighlight %}
+
+It looks like year built doesn't have any sizeable influence on home price in a univariate model. Let's move on to exploring other univariate relationships.
 
 
 #### Simple Linear Regression of Sale Year on Price of Listings Sold for Clients
 
-For this project, I'm going to start by looking at a boxplot of Year and Sale Price, only for listings in which ny client represented sellers (i.e., for listings she was responsible for selling for clients). 
+For this inquiry, I'm going to start by looking at a boxplot of Year and Sale Price, only for listings in which ny client represented sellers (i.e., for listings she was responsible for selling for clients). 
 
 {% highlight python %}
 sns.boxplot(y='sale_price', x='sale_year', data=sold)
