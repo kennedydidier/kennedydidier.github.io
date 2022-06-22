@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Predicting Employer Hiring Behavior
-categories: [r, logisticregression, regression, structuredlearningalgorithms, dataanalysis]
+categories: [r logisticregression regression structuredlearningalgorithms dataanalysis]
 ---
 
 Similar to the descriptive analysis I conducted on employer implicit bias using data from a 2003 
