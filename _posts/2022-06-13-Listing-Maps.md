@@ -6,6 +6,7 @@ categories: python, mapping, dataexploration, realestate
 
 
 After basic exploration, the first thing my client was interested in was the geographical distribution of her sales portfolio. My first step was finding the latitude and longitude coordinates for all of her addresses.
+<!--more-->
 
 {% highlight python %}
 import geopandas as gpd
