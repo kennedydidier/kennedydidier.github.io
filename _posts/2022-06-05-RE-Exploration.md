@@ -4,7 +4,7 @@ title: Real Estate Data Exploration
 categories: [python, dataexploration, realestate]
 ---
 
-After transforming my client's data appropriately, I now want to produce some descriptive analytics for her sales portfolio. Based on our conversations, I knew the first things I would want to look into were:
+After transforming my client's data appropriately, I now want to produce some descriptive analytics for her sales portfolio. <!--more--> Based on our conversations, I knew the first things I would want to look into were:
 1. how many listings my client handled per year
       1. in how many she represented the seller 
       2. in how many she represented the buyer
