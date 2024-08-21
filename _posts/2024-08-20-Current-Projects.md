@@ -30,5 +30,5 @@ I am also working with a coworker to develop some new economics-based statistics
 I am also involved in the conception, development, and building of new and useful stats pages for NHL.com, increasing our offerings of player and team stats to the public.
 
 
-In addition to these, my daily resonsibilities include writing MySQL queries to generate data reports for NHL PR and media partners, as well a various departments across the league.
+In addition to these, my daily resonsibilities include writing MySQL queries to generate data reports for NHL PR and media partners, as well as various departments across the league.
  
