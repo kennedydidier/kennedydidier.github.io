@@ -37,9 +37,6 @@ navigation_links:
   - title: About
     url: /about
     
-  - title: Resume
-    url: /resume
-
   - title: Search
     url: /search
 
