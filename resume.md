@@ -3,5 +3,5 @@ layout: page
 title: Resume
 permalink: /resume
 ---
-
-[Kennedy Didier Resume.pdf](https://github.com/kennedydidier/kennedydidier.github.io/files/8959237/Kennedy.Didier.Resume.1.pdf)
+assets/image/Kennedy Didier Resume.png
+![total sales per year](https://github.com/kennedydidier/kennedydidier.github.io/assets/image/Kennedy Didier Resume.png)
