@@ -4,4 +4,4 @@ title: Resume
 permalink: /resume
 ---
 
-[Resume](https://github.com/kennedydidier/kennedydidier.github.io/blob/main/Kennedy_Didier_Resume.pdf)
+[Resume](file:///Users/kennedy/Downloads/Kennedy_Didier_Resume%20(1).pdf)
