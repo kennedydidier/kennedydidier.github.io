@@ -11,7 +11,7 @@ correlates to employer willingness to hire an applicant with a criminal record.
 Like my previous project, instead of 
 taking a social scientific approach to this data, I sought an opportunity to gain deeper insight into business 
 behavior and employer hiring practices. Using [this](https://www.icpsr.umich.edu/web/ICPSR/studies/3599/datadocumentation), 
-dataset, which is based upon a survey of employers in Milkwaukee, Wisconsin, I developed a structured learning algorithm
+dataset, which is based upon a survey of employers in Milwaukee, Wisconsin, I developed a structured learning algorithm
 to predict the odds that a Milwaukee business would be willing to hire an employee with a criminal record 
 based on the business's starting wage, number of employees, and whether they routinely ask about criminal 
 record on their applications.
