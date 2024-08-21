@@ -4,4 +4,4 @@ title: Resume
 permalink: /resume
 ---
 
-![resume](https://github.com/kennedydidier/kennedydidier.github.io/assets/image/Kennedy Didier Resume.png)
+![resume](https://github.com/kennedydidier/kennedydidier.github.io/assets/image/KennedyDidierResume.png)
